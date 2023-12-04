@@ -6,6 +6,7 @@ use bconnect\MailingWork\ApiException;
 use Exception;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use function GuzzleHttp\Psr7\stream_for;
@@ -30,7 +31,7 @@ class Config
                 $request->getMethod(),
                 $request->getUri(),
                 $request->getHeaders(),
-                stream_for($request->getBody() . '&' . http_build_query($this->getAuthentication())),
+                Utils::streamFor($request->getBody()->getContents() . '&' . http_build_query($this->getAuthentication())),
                 $request->getProtocolVersion()
             );
             return $newRequest;
