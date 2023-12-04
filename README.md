@@ -1,10 +1,9 @@
 # mailingwork
 
-
-
 ## Installation
 
 This project is not published on packagist till now.
+
 ```
 composer require bconnect/mailingwork
 ```
